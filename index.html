@@ -1,272 +1,218 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SYNTRA.3 | Oracle Fusion Tools & Integrations – by Mohammed Ramadan</title>
-<meta name="description" content="SYNTRA.3 – a hub of Oracle Fusion tools and integrations by Mohammed Ramadan. Download Fusion Bulk Item Manager: bulk-delete mistakenly created items safely using the Delete Groups REST API.">
-<meta name="keywords" content="SYNTRA, Oracle Fusion tools, Fusion Bulk Item Manager, Delete Groups REST API, Oracle Fusion integration, Mohammed Ramadan">
-<style>
-:root{--navy:#0b1f4d;--navy2:#123a8a;--blue:#2563eb;--gold:#f6c443;--bg:#eef3fb;--card:#fff;--text:#14213d;--muted:#64748b;--line:#e2e8f0}
-*{box-sizing:border-box}
-body{margin:0;font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
-a{color:inherit}
-.app{display:flex;min-height:100vh}
-/* sidebar */
-aside{width:200px;flex-shrink:0;background:linear-gradient(180deg,#0b1f4d 0%,#0f2f73 60%,#0b1f4d 100%);color:#fff;display:flex;flex-direction:column;padding:20px 14px;position:sticky;top:0;height:100vh}
-.brand{display:flex;flex-direction:column;align-items:center;gap:6px;margin-bottom:26px}
-.brand b{font-size:1.35rem;letter-spacing:1px}
-.brand b span{color:var(--gold)}
-nav a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;text-decoration:none;color:#dbe6ff;font-size:.92rem;margin-bottom:4px}
-nav a:hover{background:rgba(255,255,255,.08)}
-nav a.active{background:var(--gold);color:var(--navy);font-weight:700}
-nav svg{width:18px;height:18px;flex-shrink:0}
-.help{margin-top:auto;text-align:center;background:rgba(255,255,255,.06);border-radius:14px;padding:16px 10px}
-.help small{display:block;color:#c7d5f5;margin:4px 0 10px}
-.btn{display:inline-flex;align-items:center;gap:8px;border:none;border-radius:999px;padding:9px 18px;font-weight:700;font-size:.88rem;cursor:pointer;text-decoration:none}
-.btn-gold{background:var(--gold);color:var(--navy)}
-.btn-blue{background:var(--blue);color:#fff}
-.btn-ghost{background:#eef3fb;color:var(--navy2)}
-/* main */
-main{flex:1;padding:18px 24px 30px;min-width:0}
-.top{display:flex;align-items:center;gap:16px;margin-bottom:18px}
-.search{flex:1;max-width:460px;display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 16px;color:var(--muted)}
-.search input{border:none;outline:none;flex:1;font-size:.9rem;background:transparent}
-.who{margin-left:auto;display:flex;align-items:center;gap:10px;font-size:.88rem}
-.avatar{width:38px;height:38px;border-radius:50%;background:var(--gold) url('') center/cover;display:grid;place-items:center;font-weight:800;color:var(--navy)}
-.grid-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:16px}
-.hero{grid-row:span 2;border-radius:18px;padding:30px;color:#fff;position:relative;overflow:hidden;
- background:radial-gradient(circle at 80% 40%,rgba(80,160,255,.55),transparent 45%),linear-gradient(120deg,#0b1f4d,#123a8a 70%,#1e56c8)}
-.hero h1{margin:0 0 6px;font-size:2rem}.hero h1 span{color:var(--gold)}
-.hero p{margin:0 0 14px;color:#dbe6ff}
-.hero .tags{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px;font-weight:600}
-.hero .tags span{border-left:3px solid var(--gold);padding-left:8px}
-.globe{position:absolute;right:-20px;top:20px;width:260px;opacity:.9}
-.hero > *:not(.globe){position:relative;max-width:62%}
-.stat{border-radius:16px;padding:16px;display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line)}
-.stat .ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;flex-shrink:0}
-.stat .ic svg{width:22px;height:22px}
-.stat small{color:var(--muted);font-weight:600}
-.stat b{display:block;font-size:1.45rem;margin:2px 0}
-.stat a{font-size:.8rem;font-weight:700;text-decoration:none;color:var(--navy2)}
-.s1{background:#eaf2ff}.s1 .ic{background:#2563eb;color:#fff}
-.s2{background:#fff5e6}.s2 .ic{background:#f59e0b;color:#fff}
-.s3{background:#e9f9ef}.s3 .ic{background:#16a34a;color:#fff}
-.s4{background:#f3edff}.s4 .ic{background:#7c3aed;color:#fff}
-.card{background:var(--card);border-radius:16px;padding:18px;border:1px solid var(--line)}
-.card h2{font-size:1.05rem;margin:0;display:flex;align-items:center;gap:8px}
-.card .head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
-.card .head a{font-size:.8rem;color:var(--blue);text-decoration:none;font-weight:600}
-.row2{display:grid;grid-template-columns:1.25fr 1fr .9fr;gap:16px;margin-top:16px}
-.apps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.tile{position:relative;border:1px solid var(--line);border-radius:14px;padding:14px 10px 30px;text-align:center;background:#f8fbff;cursor:pointer;transition:.15s}
-.tile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(18,58,138,.12)}
-.tile .ti{width:44px;height:44px;margin:0 auto 8px;border-radius:12px;display:grid;place-items:center;background:#e4edff;color:var(--navy2)}
-.tile .ti svg{width:24px;height:24px}
-.tile b{font-size:.8rem;display:block}
-.tile .badge{position:absolute;left:8px;bottom:8px;font-size:.66rem;font-weight:700;padding:2px 8px;border-radius:999px}
-.live{background:#dcfce7;color:#15803d}.soon{background:#eef2f7;color:#64748b}
-.tile .go{position:absolute;right:8px;bottom:6px;width:20px;height:20px;border-radius:50%;border:1.5px solid var(--navy2);display:grid;place-items:center;font-size:.7rem;color:var(--navy2)}
-.tile.featured{background:linear-gradient(180deg,#fff8e1,#fff);border:2px solid var(--gold)}
-.tile.featured .ti{background:var(--gold);color:var(--navy)}
-.tile.disabled{opacity:.6;cursor:default}.tile.disabled:hover{transform:none;box-shadow:none}
-.hub{position:relative;height:250px}
-.hub svg.lines{position:absolute;inset:0;width:100%;height:100%}
-.node{position:absolute;background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 12px;font-size:.75rem;font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,.05);white-space:nowrap}
-.node{z-index:2}
-.core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:92px;height:92px;font-size:.85rem;white-space:nowrap;border-radius:50%;background:radial-gradient(circle,#123a8a,#0b1f4d);color:#fff;display:grid;place-items:center;text-align:center;font-weight:800;box-shadow:0 0 0 10px #e4edff,0 0 0 20px #f1f6ff}
-.core span{color:var(--gold)}
-.feed div{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:.84rem}
-.feed div:last-child{border:none}
-.feed i{font-style:normal;color:var(--muted);font-size:.75rem;display:block}
-.dot{width:10px;height:10px;border-radius:50%;margin-top:5px;flex-shrink:0}
-.row3{display:grid;grid-template-columns:1fr 1fr 1.25fr;gap:16px;margin-top:16px}
-.links{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center}
-.links a{text-decoration:none;font-size:.78rem;font-weight:700}
-.links .ci{width:46px;height:46px;border-radius:50%;margin:0 auto 6px;display:grid;place-items:center;background:#e4edff;color:var(--navy2)}
-.links .ci svg{width:22px;height:22px}
-.ev{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--line)}
-.ev:last-child{border:none}
-.date{width:46px;text-align:center;border-radius:10px;background:#e4edff;padding:4px 0;font-weight:800;color:var(--navy2);line-height:1.1}
-.date small{display:block;font-size:.62rem;font-weight:700}
-.ev .t{flex:1;font-size:.85rem}.ev .t i{display:block;font-style:normal;color:var(--muted);font-size:.75rem}
-.pill{font-size:.72rem;font-weight:700;padding:4px 10px;border-radius:999px}
-.promo{border-radius:16px;padding:22px;color:#fff;background:linear-gradient(120deg,#0b1f4d,#123a8a);position:relative;overflow:hidden}
-.promo h3{margin:0;font-size:1.35rem}.promo h3 span{color:var(--gold)}
-.promo p{color:#cfe0ff;margin:6px 0 16px;font-size:.9rem}
-.promo svg{position:absolute;right:16px;bottom:10px;width:170px;opacity:.95}
-/* modal */
-.modal{position:fixed;inset:0;background:rgba(11,31,77,.55);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
-.modal.open{display:flex}
-.sheet{background:#fff;border-radius:18px;max-width:640px;width:100%;max-height:90vh;overflow:auto;padding:26px}
-.sheet h3{margin:0 0 4px;font-size:1.35rem}
-.sheet .meta{color:var(--muted);font-size:.85rem;margin-bottom:14px}
-.sheet ol,.sheet ul{padding-left:20px;line-height:1.6;font-size:.92rem}
-.sheet .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-.x{float:right;border:none;background:#eef3fb;border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:1rem}
-footer{text-align:center;color:var(--muted);font-size:.8rem;margin-top:22px}
-@media(max-width:1100px){.grid-top{grid-template-columns:1fr 1fr}.hero{grid-column:span 2;grid-row:auto}.row2,.row3{grid-template-columns:1fr}.apps{grid-template-columns:repeat(4,1fr)}}
-@media(max-width:760px){aside{display:none}.apps,.links{grid-template-columns:repeat(2,1fr)}.grid-top{grid-template-columns:1fr}.hero{grid-column:auto}.globe{display:none}.who span{display:none}}
-</style>
+<title>SYNTRA.3 · Tools for Oracle Fusion Cloud teams</title>
+<meta name="description" content="SYNTRA.3 builds small, safe tools that save Oracle Fusion Cloud teams hours of manual work. Start with Fusion Bulk Item Manager.">
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="assets/landing.css">
 </head>
 <body>
-<div class="app">
-<aside>
- <div class="brand">
-  <svg width="58" height="58" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6c443"/><stop offset="1" stop-color="#e09b12"/></linearGradient><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#60a5fa"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs><path d="M46 14c-6-5-22-6-27 2s6 13 14 16 14 9 7 16-20 4-26-1" fill="none" stroke="url(#g1)" stroke-width="7" stroke-linecap="round"/><path d="M12 22c4-9 20-12 30-6M52 42c-4 9-20 12-30 6" fill="none" stroke="url(#g2)" stroke-width="3" stroke-linecap="round"/></svg>
-  <b>SYNTRA<span>.3</span></b>
- </div>
- <nav>
-  <a class="active" href="#"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l9 8h-3v9h-5v-6h-2v6H6v-9H3z"/></svg>Home</a>
-  <a href="#apps"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg>Applications</a>
-  <a href="#integrations"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M8 8l8 8M18 6h-4M6 18v-4"/></svg>Integrations</a>
-  <a href="#" onclick="openApp();return false"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v11l4-4 1.4 1.4L12 17.8 6.6 11.4 8 10l4 4V3zM4 19h16v2H4z"/></svg>Downloads</a>
-  <a href="about.html"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zm-8 8c0-4 4-6 8-6s8 2 8 6z"/></svg>About me</a>
-  <a href="#support"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 13v-1a8 8 0 0116 0v1"/><rect x="3" y="13" width="4" height="6" rx="1"/><rect x="17" y="13" width="4" height="6" rx="1"/></svg>Support</a>
- </nav>
- <div class="help" id="support">
-  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 13v-1a8 8 0 0116 0v1"/><rect x="3" y="13" width="4" height="6" rx="1"/><rect x="17" y="13" width="4" height="6" rx="1"/></svg>
-  <div style="font-weight:700;margin-top:6px">Need help?</div>
-  <small>Activation keys &amp; support</small>
-  <a class="btn btn-gold" href="mailto:zidan.mohammed1994@gmail.com?subject=SYNTRA.3%20Support">Contact</a>
- </div>
-</aside>
+<header class="nav">
+  <a class="logo" href="./"><span class="mark">S3</span><span>SYNTRA<span class="gold">.</span>3</span></a>
+  <nav class="links">
+    <a href="#programs">Programs</a>
+    <a href="#how">How it works</a>
+    <a href="#about">About</a>
+    <a href="about.html">About me / CV</a>
+  </nav>
+  <div class="nav-right">
+    <button class="btn-line small" data-open-suggest>Suggestions</button>
+    <a class="btn-gold small" href="app/">Open the app</a>
+  </div>
+</header>
 
 <main>
- <div class="top">
-  <label class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="q" placeholder="Search applications…" oninput="filterApps(this.value)"></label>
-  <a class="btn btn-gold" href="about.html" style="margin-left:auto">👤 About me / CV</a>
-  <div class="who" style="margin-left:0"><span><b>Mohammed Ramadan</b><br><small style="color:var(--muted)">Oracle Fusion Consultant</small></span><div class="avatar">MR</div></div>
- </div>
-
- <div class="grid-top">
+  <!-- ============ hero ============ -->
   <section class="hero">
-   <svg class="globe" viewBox="0 0 300 260" aria-hidden="true"><defs><radialGradient id="gl" cx="50%" cy="45%"><stop offset="0" stop-color="#7cc4ff" stop-opacity=".9"/><stop offset="1" stop-color="#1e56c8" stop-opacity=".1"/></radialGradient></defs><circle cx="170" cy="120" r="95" fill="url(#gl)"/><g fill="none" stroke="#bfe3ff" stroke-opacity=".6"><ellipse cx="170" cy="120" rx="95" ry="35"/><ellipse cx="170" cy="120" rx="40" ry="95"/><ellipse cx="170" cy="120" rx="75" ry="95"/><path d="M75 120h190"/></g><g fill="#fff" fill-opacity=".85"><rect x="110" y="60" width="34" height="24" rx="4"/><rect x="200" y="70" width="34" height="24" rx="4"/><rect x="215" y="140" width="34" height="24" rx="4"/><rect x="100" y="140" width="34" height="24" rx="4"/></g><g stroke="#f6c443" stroke-width="2"><path d="M117 78l6-6 6 4 8-9"/><path d="M207 88v-8M214 88v-12M221 88v-6M228 88v-10"/></g><circle cx="170" cy="120" r="20" fill="#fff" fill-opacity=".9"/><path d="M162 122a8 8 0 0116 0z" fill="#2563eb"/></svg>
-   <h1>Welcome to <span>SYNTRA.3</span></h1>
-   <p>Oracle Fusion tools &amp; integrations by Mohammed Ramadan</p>
-   <div class="tags"><span>Connect</span><span>Automate</span><span>Grow</span></div>
-   <a class="btn btn-gold" href="#apps">Explore apps →</a>
-  </section>
-  <div class="stat s1"><div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg></div><div><small>Apps available</small><b>1</b><a href="#apps">View apps →</a></div></div>
-  <div class="stat s2"><div class="ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v11l4-4 1.4 1.4L12 17.8 6.6 11.4 8 10l4 4V3zM4 19h16v2H4z"/></svg></div><div><small>Latest release</small><b>v1.0</b><a href="#" onclick="openApp();return false">Details →</a></div></div>
-  <div class="stat s3"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l4 4 10-10"/></svg></div><div><small>Platform</small><b>Windows</b><a href="https://github.com/syntra-erp/syntra-erp.github.io/releases/latest" target="_blank" rel="noopener">Download →</a></div></div>
-  <div class="stat s4"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg></div><div><small>Security</small><b>SSO · MFA</b><a href="#" onclick="openApp();return false">Learn more →</a></div></div>
- </div>
-
- <div class="row2">
-  <section class="card" id="apps">
-   <div class="head"><h2>▦ Our Applications</h2><a href="#" onclick="openApp();return false">Featured app →</a></div>
-   <div class="apps" id="appGrid">
-    <div class="tile featured" data-name="fusion bulk item manager oracle integration delete items" onclick="openApp()">
-     <div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg></div>
-     <b>Fusion Bulk Item Manager</b><span class="badge live">Available</span><span class="go">→</span>
+    <div class="hero-text">
+      <span class="eyebrow">For Oracle Fusion Cloud teams</span>
+      <h1><b>Simple tools</b><br>that take the busywork<br>out of Oracle Fusion</h1>
+      <p class="lead">SYNTRA.3 builds small, safe programs for Supply Chain, integration and reporting work
+        in Oracle Fusion Cloud &mdash; the jobs that usually take hours of clicking, done in minutes.</p>
+      <div class="cta">
+        <a class="btn-gold" href="app/">&#x25B6;&nbsp; Open Bulk Item Manager</a>
+        <button class="btn-line" data-open-suggest>&#x2709;&nbsp; Send a suggestion</button>
+      </div>
+      <a class="down" href="#programs" aria-label="Scroll down">&#x2304;</a>
     </div>
-    <div class="tile disabled" data-name="bi reports business intelligence"><div class="ti"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 20V10h3v10zm6 0V4h3v16zm6 0v-7h3v7z"/></svg></div><b>BI Reports Pack</b><span class="badge soon">Coming soon</span></div>
-    <div class="tile disabled" data-name="integration hub rest api"><div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M8 8l8 8"/></svg></div><b>Integration Hub</b><span class="badge soon">Coming soon</span></div>
-    <div class="tile disabled" data-name="data extract sql"><div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h10"/></svg></div><b>Data Extract Tool</b><span class="badge soon">Coming soon</span></div>
-    <div class="tile disabled" data-name="procurement tools"><div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4h3l2 11h11l2-8H7"/><circle cx="10" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg></div><b>Procurement Tools</b><span class="badge soon">Coming soon</span></div>
-    <div class="tile disabled" data-name="inventory tools"><div class="ti"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l9-4 9 4v10l-9 4-9-4z"/><path d="M3 7l9 4 9-4M12 11v10"/></svg></div><b>Inventory Tools</b><span class="badge soon">Coming soon</span></div>
-    <div class="tile disabled" data-name="document management"><div class="ti"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 6h7l2 2h9v11H3z"/></svg></div><b>Document Tools</b><span class="badge soon">Coming soon</span></div>
-    <div class="tile disabled" data-name="more apps"><div class="ti"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11 5h2v14h-2zM5 11h14v2H5z"/></svg></div><b>More apps</b><span class="badge soon">Coming soon</span></div>
-   </div>
+
+    <!-- original illustration: a glowing hub connected to data tiles -->
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 560 460" role="img">
+        <defs>
+          <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0" stop-color="#ffd36b" stop-opacity=".9"/>
+            <stop offset=".45" stop-color="#f0a52a" stop-opacity=".35"/>
+            <stop offset="1" stop-color="#f0a52a" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ffd98a"/><stop offset="1" stop-color="#c77d14"/>
+          </linearGradient>
+          <linearGradient id="dark" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#2a2a2e"/><stop offset="1" stop-color="#121214"/>
+          </linearGradient>
+        </defs>
+        <!-- links -->
+        <g class="wires" stroke="#c98a2b" stroke-width="1.4" fill="none" opacity=".7">
+          <path d="M280 250 L130 165"/><path d="M280 250 L440 150"/>
+          <path d="M280 250 L120 360"/><path d="M280 250 L450 360"/>
+        </g>
+        <g class="pulses" fill="#ffd36b">
+          <circle r="3"><animateMotion dur="3.2s" repeatCount="indefinite" path="M280 250 L130 165"/></circle>
+          <circle r="3"><animateMotion dur="2.6s" repeatCount="indefinite" path="M440 150 L280 250"/></circle>
+          <circle r="3"><animateMotion dur="3.6s" repeatCount="indefinite" path="M280 250 L450 360"/></circle>
+          <circle r="3"><animateMotion dur="2.9s" repeatCount="indefinite" path="M120 360 L280 250"/></circle>
+        </g>
+        <!-- hub -->
+        <ellipse cx="280" cy="300" rx="150" ry="52" fill="url(#glow)"/>
+        <ellipse cx="280" cy="292" rx="118" ry="38" fill="url(#dark)" stroke="url(#gold)" stroke-width="3"/>
+        <ellipse cx="280" cy="270" rx="88" ry="28" fill="#1a1a1d" stroke="#e7a63a" stroke-width="2"/>
+        <rect x="200" y="200" width="160" height="70" fill="url(#dark)"/>
+        <ellipse cx="280" cy="200" rx="80" ry="26" fill="#1d1d21" stroke="url(#gold)" stroke-width="2.5"/>
+        <ellipse cx="280" cy="200" rx="46" ry="15" fill="url(#glow)"/>
+        <ellipse cx="280" cy="200" rx="26" ry="8" fill="#fff1cc"/>
+        <!-- floating cube on the hub -->
+        <g class="float">
+          <polygon points="280,92 322,114 280,136 238,114" fill="#ffd98a"/>
+          <polygon points="238,114 280,136 280,178 238,156" fill="#c77d14"/>
+          <polygon points="322,114 280,136 280,178 322,156" fill="#e39a2a"/>
+          <text x="280" y="121" text-anchor="middle" font-family="Segoe UI,Arial" font-weight="800" font-size="15" fill="#2b1a03">S3</text>
+        </g>
+        <!-- tile: spreadsheet -->
+        <g transform="translate(130 165)">
+          <polygon points="0,-30 52,0 0,30 -52,0" fill="#1b1b1f" stroke="#c98a2b" stroke-width="1.5"/>
+          <g transform="translate(-22 -40)">
+            <rect width="44" height="54" rx="5" fill="#f6efe0"/>
+            <rect x="6" y="8" width="32" height="5" rx="2" fill="#c77d14"/>
+            <rect x="6" y="18" width="14" height="4" fill="#b8ac94"/><rect x="24" y="18" width="14" height="4" fill="#b8ac94"/>
+            <rect x="6" y="26" width="14" height="4" fill="#b8ac94"/><rect x="24" y="26" width="14" height="4" fill="#b8ac94"/>
+            <rect x="6" y="34" width="14" height="4" fill="#b8ac94"/><rect x="24" y="34" width="14" height="4" fill="#e39a2a"/>
+          </g>
+        </g>
+        <!-- tile: stacked layers -->
+        <g transform="translate(440 150)">
+          <polygon points="0,-30 52,0 0,30 -52,0" fill="#1b1b1f" stroke="#c98a2b" stroke-width="1.5"/>
+          <polygon points="0,-38 34,-20 0,-2 -34,-20" fill="#ffd98a"/>
+          <polygon points="0,-28 34,-10 0,8 -34,-10" fill="none" stroke="#e39a2a" stroke-width="3"/>
+          <polygon points="0,-18 34,0 0,18 -34,0" fill="none" stroke="#c77d14" stroke-width="3"/>
+        </g>
+        <!-- tile: check list -->
+        <g transform="translate(120 360)">
+          <polygon points="0,-30 52,0 0,30 -52,0" fill="#1b1b1f" stroke="#c98a2b" stroke-width="1.5"/>
+          <circle cx="0" cy="-22" r="20" fill="#16161a" stroke="#4ade80" stroke-width="2.5"/>
+          <path d="M-9 -22 l6 7 l12 -14" stroke="#4ade80" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        <!-- tile: server -->
+        <g transform="translate(450 360)">
+          <polygon points="0,-30 52,0 0,30 -52,0" fill="#1b1b1f" stroke="#c98a2b" stroke-width="1.5"/>
+          <g transform="translate(-20 -52)">
+            <rect width="40" height="14" rx="3" fill="#26262b" stroke="#e7a63a"/>
+            <rect y="17" width="40" height="14" rx="3" fill="#26262b" stroke="#e7a63a"/>
+            <rect y="34" width="40" height="14" rx="3" fill="#26262b" stroke="#e7a63a"/>
+            <circle cx="32" cy="7" r="2.2" fill="#4ade80"/><circle cx="32" cy="24" r="2.2" fill="#ffd36b"/><circle cx="32" cy="41" r="2.2" fill="#f87171"/>
+          </g>
+        </g>
+      </svg>
+    </div>
   </section>
 
-  <section class="card" id="integrations">
-   <div class="head"><h2>⛓ Integrations Overview</h2></div>
-   <div class="hub">
-    <svg class="lines" viewBox="0 0 400 250" preserveAspectRatio="none"><g stroke="#93c5fd" stroke-width="2" stroke-dasharray="4 4" fill="none"><path d="M70 45L200 125M70 125H200M70 205L200 125M330 45L200 125M330 125H200M330 205L200 125"/></g></svg>
-    <div class="node" style="left:2%;top:12%">Oracle Fusion</div>
-    <div class="node" style="left:2%;top:44%">REST / SOAP</div>
-    <div class="node" style="left:2%;top:76%">Excel / CSV</div>
-    <div class="node" style="right:2%;top:12%">SSO (OAuth 2.0)</div>
-    <div class="node" style="right:2%;top:44%">BI Publisher</div>
-    <div class="node" style="right:2%;top:76%">Email alerts</div>
-    <div class="core"><div>SYNTRA<span>.3</span></div></div>
-   </div>
+  <!-- ============ purpose ============ -->
+  <section class="band" id="about">
+    <div class="wrap">
+      <h2>What is SYNTRA.3?</h2>
+      <p class="intro">A small studio of tools for people who run Oracle Fusion Cloud every day. Each program does one
+        job well, uses Oracle's own supported REST APIs, and is built to be safe first.</p>
+      <div class="cards three">
+        <div class="card"><div class="ic">&#x26A1;</div><h3>Save hours</h3>
+          <p>Turn repetitive screen-by-screen work into one upload and one click.</p></div>
+        <div class="card"><div class="ic">&#x1F6E1;</div><h3>Safe by design</h3>
+          <p>Validate before you change anything. Passwords are never saved. Every result is reported.</p></div>
+        <div class="card"><div class="ic">&#x1F310;</div><h3>Runs in your browser</h3>
+          <p>No installation. Open the page, connect to your Fusion pod and start.</p></div>
+      </div>
+      <p class="by">Built by <a href="about.html" rel="noopener">Mohammed Ramadan</a>,
+        Oracle Fusion Techno-Functional Consultant (SCM · Integration · BI Reporting).</p>
+    </div>
   </section>
 
-  <section class="card">
-   <div class="head"><h2>⚡ Recent activity</h2></div>
-   <div class="feed">
-    <div><span class="dot" style="background:#16a34a"></span><span><b>Fusion Bulk Item Manager v1.0 released</b><i>Windows · download available</i></span></div>
-    <div><span class="dot" style="background:#2563eb"></span><span><b>SSO sign-in supported</b><i>OAuth 2.0 Authorization Code + PKCE</i></span></div>
-    <div><span class="dot" style="background:#f59e0b"></span><span><b>Validate Only mode</b><i>Check Oracle constraints before deleting</i></span></div>
-    <div><span class="dot" style="background:#7c3aed"></span><span><b>More tools on the way</b><i>BI reports &amp; integration utilities</i></span></div>
-   </div>
+  <!-- ============ programs ============ -->
+  <section class="band dark" id="programs">
+    <div class="wrap">
+      <h2>Programs</h2>
+      <div class="cards two">
+        <article class="card program">
+          <div class="tag live">Available</div>
+          <h3>Fusion Bulk Item Manager</h3>
+          <p>Delete items created by mistake from the Item Master in bulk, through Oracle's Delete Groups
+            REST API &mdash; with a safe <b>Validate Only</b> mode first.</p>
+          <ul>
+            <li>Paste item codes or descriptions, or upload Excel / CSV</li>
+            <li>Validate Only and Deep check before anything is deleted</li>
+            <li>Clear results: deleted, blocked (with Oracle's reason) or pending</li>
+            <li>Export results to Excel</li>
+          </ul>
+          <div class="cta">
+            <a class="btn-gold" href="app/">Open in browser</a>
+          </div>
+        </article>
+        <article class="card program soon">
+          <div class="tag">Coming next</div>
+          <h3>More tools on the way</h3>
+          <p>Have a repetitive Oracle Fusion task that eats your day? Tell us &mdash; the next tool may be built
+            around your suggestion.</p>
+          <div class="cta"><button class="btn-line" data-open-suggest>Suggest a tool</button></div>
+        </article>
+      </div>
+    </div>
   </section>
- </div>
 
- <div class="row3">
-  <section class="card">
-   <div class="head"><h2>🔗 Quick Links</h2></div>
-   <div class="links">
-    <a href="#" onclick="openApp();return false"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h7a2 2 0 012 2v12a2 2 0 00-2-2H4zM20 5h-7a2 2 0 00-2 2v12a2 2 0 012-2h7z"/></svg></div>User Guide</a>
-    <a href="mailto:zidan.mohammed1994@gmail.com?subject=Fusion%20Bulk%20Item%20Manager%20-%20Activation%20Key"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="14" r="4"/><path d="M11 11l9-9M17 5l2 2"/></svg></div>Activation Key</a>
-    <a href="mailto:zidan.mohammed1994@gmail.com?subject=SYNTRA.3%20Support"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 13v-1a8 8 0 0116 0v1"/><rect x="3" y="13" width="4" height="6" rx="1"/><rect x="17" y="13" width="4" height="6" rx="1"/></svg></div>Support</a>
-    <a href="#" onclick="openApp('faq');return false"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 015 0c0 2-2.5 2-2.5 4M12 17h.01"/></svg></div>FAQs</a>
-   </div>
+  <!-- ============ how it works ============ -->
+  <section class="band" id="how">
+    <div class="wrap">
+      <h2>How it works</h2>
+      <ol class="steps">
+        <li><span>1</span><h3>Connect</h3><p>Enter your Fusion URL, user and password in Settings. Nothing is stored.</p></li>
+        <li><span>2</span><h3>Validate</h3><p>Paste or upload the items and run Validate Only to see what can be removed.</p></li>
+        <li><span>3</span><h3>Delete</h3><p>Type DELETE to confirm. Follow every item live, then export the results.</p></li>
+      </ol>
+    </div>
   </section>
 
-  <section class="card">
-   <div class="head"><h2>🗓 Release notes</h2><a href="https://github.com/syntra-erp/syntra-erp.github.io/releases" target="_blank" rel="noopener">All releases →</a></div>
-   <div class="ev"><div class="date">v1.0<small>LATEST</small></div><div class="t"><b>Fusion Bulk Item Manager</b><i>First public release</i></div><span class="pill" style="background:#dcfce7;color:#15803d">Live</span></div>
-   <div class="ev"><div class="date">NEXT<small>SOON</small></div><div class="t"><b>New Oracle Fusion tools</b><i>Follow on LinkedIn for updates</i></div><a class="pill" style="background:#2563eb;color:#fff;text-decoration:none" href="https://www.linkedin.com/in/mohammed-ramadan-729819268" target="_blank" rel="noopener">Follow</a></div>
+  <!-- ============ suggestion band ============ -->
+  <section class="band glow">
+    <div class="wrap center">
+      <h2>Have an idea?</h2>
+      <p class="intro">Suggestions, bugs or a tool you wish existed &mdash; every message is read.</p>
+      <button class="btn-gold" data-open-suggest>&#x2709;&nbsp; Send a suggestion</button>
+    </div>
   </section>
-
-  <section class="promo">
-   <h3>Need a custom <span>Oracle Fusion</span> tool?</h3>
-   <p>Integrations, BI reports and automation built for your business.</p>
-   <a class="btn btn-gold" href="mailto:zidan.mohammed1994@gmail.com?subject=Custom%20Oracle%20Fusion%20tool">Get in touch →</a>
-   <svg viewBox="0 0 170 90" aria-hidden="true"><g fill="#3b82f6"><rect x="10" y="60" width="18" height="30" rx="3"/><rect x="40" y="45" width="18" height="45" rx="3"/><rect x="70" y="35" width="18" height="55" rx="3"/><rect x="100" y="22" width="18" height="68" rx="3"/><rect x="130" y="8" width="18" height="82" rx="3" fill="#60a5fa"/></g><path d="M8 55L50 38 80 30 110 15 150 2" stroke="#f6c443" stroke-width="4" fill="none" stroke-linecap="round"/></svg>
-  </section>
- </div>
- <footer>© SYNTRA.3 · Mohammed Ramadan · Oracle Fusion Techno-Functional Consultant · Oracle and Oracle Fusion are trademarks of Oracle Corporation; this site is independent and not affiliated with Oracle.</footer>
 </main>
+
+<footer class="footer">
+  <span>&copy; 2026 SYNTRA.3 · Mohammed Ramadan</span>
+  <span class="muted">Independent tools for Oracle Fusion Cloud. Not affiliated with or endorsed by Oracle.</span>
+  <a href="https://www.linkedin.com/in/mohammed-ramadan-729819268" rel="noopener">LinkedIn</a>
+</footer>
+
+<!-- ============ suggestion form ============ -->
+<div class="modal hidden" id="suggest" role="dialog" aria-modal="true" aria-labelledby="sTitle">
+  <form class="modal-box" id="sForm" novalidate>
+    <button type="button" class="x" id="sClose" aria-label="Close">&times;</button>
+    <h3 id="sTitle">Send a suggestion</h3>
+    <p class="muted">Write your idea and your e-mail so we can reply.</p>
+    <label>Your name <span class="muted">(optional)</span><input id="sName" maxlength="80" autocomplete="name"></label>
+    <label>Your e-mail *<input id="sEmail" type="email" maxlength="254" autocomplete="email" required></label>
+    <label>Suggestion *<textarea id="sText" maxlength="2000" rows="6" required placeholder="What should we add or improve?"></textarea></label>
+    <div class="hp" aria-hidden="true"><label>Website<input id="sWebsite" tabindex="-1" autocomplete="off"></label></div>
+    <div class="row"><span class="muted small" id="sCount">0 / 2000</span><span class="grow"></span>
+      <button class="btn-gold" id="sSend" type="submit">Send</button></div>
+    <p class="msg" id="sMsg" role="status"></p>
+  </form>
 </div>
 
-<div class="modal" id="m" onclick="if(event.target===this)closeApp()">
- <div class="sheet">
-  <button class="x" onclick="closeApp()" aria-label="Close">✕</button>
-  <h3>Fusion Bulk Item Manager</h3>
-  <div class="meta">v1.0 · Windows · Python desktop app · Oracle Fusion Delete Groups REST API</div>
-  <p>Safely bulk-delete mistakenly created items from the Oracle Fusion Item Master — using Oracle's supported flow: create delete group → add items → Check Constraints → Submit for Delete.</p>
-  <b>Features</b>
-  <ul>
-   <li>Item codes or exact descriptions, typed or uploaded from Excel/CSV (drag &amp; drop)</li>
-   <li><b>Validate Only</b> (default): runs everything up to Check Constraints — nothing is deleted</li>
-   <li><b>Delete Items</b>: asks you to type DELETE, skips blocked items, submits and confirms removal</li>
-   <li>Basic sign-in with MFA push, or SSO via OAuth 2.0 (PKCE). Passwords are never saved</li>
-   <li>KPI cards, live console, results table and optional email notifications</li>
-  </ul>
-  <b>How to start</b>
-  <ol>
-   <li>Download <code>OIC-IT-DE-INT.exe</code> and run it (no installation needed).</li>
-   <li>If Windows shows “Windows protected your PC”, click <b>More info → Run anyway</b>.</li>
-   <li>Copy the <b>Machine ID</b> the app shows and send it to request your activation key.</li>
-   <li>Open Settings: Fusion URL (<code>https://&lt;pod&gt;.fa.&lt;dc&gt;.oraclecloud.com</code>), user and password.</li>
-   <li>Always run <b>Validate Only</b> first.</li>
-  </ol>
-  <div id="faq">
-  <b>FAQs</b>
-  <ul>
-   <li><b>Which items can't be deleted?</b> Items used in POs, with transactions, etc. — Oracle blocks them, and the app shows Oracle's reason.</li>
-   <li><b>What role does the Fusion user need?</b> Privileges for Product Management deletion groups and reading items / inventory organizations.</li>
-   <li><b>Can one key activate two computers?</b> No — each key works only on the machine it was issued for.</li>
-  </ul>
-  </div>
-  <div class="actions">
-   <a class="btn btn-blue" href="https://github.com/syntra-erp/syntra-erp.github.io/releases/latest" target="_blank" rel="noopener">⬇ Download for Windows</a>
-   <a class="btn btn-gold" href="mailto:zidan.mohammed1994@gmail.com?subject=Fusion%20Bulk%20Item%20Manager%20-%20Activation%20Key">Request activation key</a>
-   <button class="btn btn-ghost" onclick="closeApp()">Close</button>
-  </div>
- </div>
-</div>
-
-<script>
-function openApp(sec){document.getElementById('m').classList.add('open');if(sec==='faq'){setTimeout(function(){document.getElementById('faq').scrollIntoView({behavior:'smooth'})},50)}}
-function closeApp(){document.getElementById('m').classList.remove('open')}
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeApp()});
-function filterApps(v){v=v.toLowerCase().trim();document.querySelectorAll('#appGrid .tile').forEach(function(t){t.style.display=!v||t.dataset.name.indexOf(v)>-1||t.textContent.toLowerCase().indexOf(v)>-1?'':'none'})}
-</script>
+<script src="assets/site-config.js"></script>
+<script src="assets/landing.js"></script>
 </body>
 </html>

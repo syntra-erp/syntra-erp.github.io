@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oracle Fusion – Bulk Item Manager · SYNTRA.3</title>
+<link rel="icon" href="data:,">
+<style>
+html,body{margin:0;height:100%;background:#eef1f6;font:14px/1.5 Inter,"Segoe UI",system-ui,sans-serif;color:#1f2937}
+iframe{position:fixed;inset:0;width:100%;height:100%;border:0;display:block;background:#eef1f6}
+.wait{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#eef1f6;z-index:2;text-align:center;padding:20px}
+.wait.hidden{display:none}
+.spin{width:44px;height:44px;border-radius:50%;border:4px solid #cdd6e3;border-top-color:#5b7fd1;animation:s 1s linear infinite}
+@keyframes s{to{transform:rotate(360deg)}}
+.wait b{font-size:17px}.wait small{color:#6b7a8c;max-width:420px}
+.wait a{color:#4b6dc0;font-weight:600}
+</style>
+</head>
+<body>
+<div class="wait" id="wait">
+  <div class="spin" id="spin"></div>
+  <b id="wTitle">Starting Fusion Bulk Item Manager ...</b>
+  <small id="wText">The first open after a quiet period can take up to a minute.</small>
+  <a href="../">← Back to SYNTRA.3</a>
+</div>
+<iframe id="app" title="Fusion Bulk Item Manager" referrerpolicy="no-referrer"></iframe>
+<script src="../assets/site-config.js"></script>
+<script>
+(function () {
+  var server = (window.SYNTRA_SERVER || "").replace(/\/$/, "");
+  var frame = document.getElementById("app"), wait = document.getElementById("wait"), done = false;
+  frame.addEventListener("load", function () { done = true; wait.classList.add("hidden"); });
+  frame.src = server + "/app";
+  setTimeout(function () {
+    if (done) return;
+    document.getElementById("spin").style.display = "none";
+    document.getElementById("wTitle").textContent = "The program is not available right now.";
+    document.getElementById("wText").textContent = "Please try again in a few minutes.";
+  }, 120000);
+})();
+</script>
+</body>
+</html>

@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mohammed Ramadan | Oracle Fusion Techno-Functional Consultant (SCM, Integration, BI)</title>
+<link rel="icon" href="data:,">
 <meta name="description" content="Mohammed Ramadan – Oracle Fusion Techno-Functional Consultant specializing in Supply Chain (Inventory, Procurement, Product Management), integrations with REST/SOAP APIs, BI Publisher, OTBI and SQL. Based in Cairo, Egypt.">
 <meta name="keywords" content="Mohammed Ramadan, Oracle Fusion, Python, Bulk Item Delete, Delete Groups API, Oracle Cloud, Techno-Functional Consultant, Oracle SCM, BI Publisher, OTBI, SQL, REST API, SOAP, Oracle Integration, Inventory, Procurement, Product Management, Cairo, Egypt">
 <meta name="author" content="Mohammed Ramadan">
@@ -62,7 +63,7 @@ footer{text-align:center;color:var(--muted);padding:24px;font-size:.9rem}
    <div class="role" style="color:#fff;font-weight:normal">SCM · Integration · BI Reporting</div>
    <div class="loc">Cairo, Egypt</div>
    <div class="btns">
-    <a class="btn-line" href="index.html">← SYNTRA.3 Portal</a>
+    <a class="btn-line" href="index.html">← SYNTRA.3 Home</a>
     <a class="btn-gold" href="Mohammed_Ramadan_CV.pdf" download>Download CV (PDF)</a>
     <a class="btn-line" href="https://www.linkedin.com/in/mohammed-ramadan-729819268" target="_blank" rel="noopener">LinkedIn</a>
     <a class="btn-line" href="mailto:zidan.mohammed1994@gmail.com">Email me</a>
@@ -116,25 +117,25 @@ footer{text-align:center;color:var(--muted);padding:24px;font-size:.9rem}
 
 <section>
  <h2>Projects</h2>
- <div class="job-head"><span>Fusion Bulk Item Manager – Desktop Tool</span><span>Python · PySide6 · Oracle Fusion REST API</span></div>
- <p style="margin:8px 0">A desktop application that safely bulk-deletes mistakenly created items from the Oracle Fusion Item Master, using Oracle's supported Delete Groups REST API (create group → add items → Check Constraints → Submit for Delete).</p>
+ <div class="job-head"><span>Fusion Bulk Item Manager – Web App</span><span>Python · Flask · Oracle Fusion REST API</span></div>
+ <p style="margin:8px 0">A web application (runs in the browser, no installation) that safely bulk-deletes mistakenly created items from the Oracle Fusion Item Master, using Oracle's supported Delete Groups REST API (create group → add items → Check Constraints → Submit for Delete).</p>
  <ul>
   <li>Accepts item codes or exact descriptions, typed or uploaded from Excel/CSV (drag &amp; drop).</li>
   <li><b>Validate Only</b> mode runs Oracle's constraint checks and reports which items can or cannot be deleted, with Oracle's reason, before anything is removed.</li>
   <li><b>Delete Items</b> mode asks for confirmation, skips blocked items (used in POs, with transactions…), submits the group and confirms the items are really gone.</li>
   <li>Secure sign-in: basic authentication with MFA push handling, or SSO via OAuth 2.0 (Authorization Code + PKCE). Passwords are never stored.</li>
   <li>KPI dashboard, live console and results table; email notifications; locked per-environment configuration for administrators.</li>
-  <li>Per-machine license activation, Windows installer, and automated tests against a mock Fusion server.</li>
+  <li>Runs entirely in the browser – no download, no installation – with automated tests against a mock Fusion server.</li>
  </ul>
  <div class="chips" style="margin-top:12px">
-  <span class="chip">Python</span><span class="chip">PySide6</span><span class="chip">REST API</span><span class="chip">OAuth 2.0 / PKCE</span><span class="chip">Excel / CSV</span><span class="chip">Oracle Product Management</span>
+  <span class="chip">Python</span><span class="chip">Flask</span><span class="chip">REST API</span><span class="chip">OAuth 2.0 / PKCE</span><span class="chip">Excel / CSV</span><span class="chip">Oracle Product Management</span>
  </div>
  <div style="margin-top:20px;padding:18px 20px;background:#0d1b2a;border-radius:10px;color:#fff">
-  <div style="font-weight:bold;font-size:1.05rem;margin-bottom:4px">Get the app</div>
-  <div style="color:#cfe0f0;font-size:.95rem;margin-bottom:12px">Windows installer. After installing, the app shows a Machine ID &mdash; send it to request your activation key.</div>
+  <div style="font-weight:bold;font-size:1.05rem;margin-bottom:4px">Open the app</div>
+  <div style="color:#cfe0f0;font-size:.95rem;margin-bottom:12px">Runs in your browser &mdash; no download or installation. Connect to your Oracle Fusion pod and start with Validate Only.</div>
   <div class="btns">
-   <a class="btn-gold" href="https://github.com/syntra-erp/syntra-erp.github.io/releases/latest" target="_blank" rel="noopener">Download for Windows</a>
-   <a class="btn-line" href="mailto:zidan.mohammed1994@gmail.com?subject=Fusion%20Bulk%20Item%20Manager%20-%20Activation%20Key">Request activation key</a>
+   <a class="btn-gold" href="app/">Open in browser</a>
+   <a class="btn-line" href="mailto:zidan.mohammed1994@gmail.com?subject=Fusion%20Bulk%20Item%20Manager">Contact</a>
   </div>
  </div>
 </section>
